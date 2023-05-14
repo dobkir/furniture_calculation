@@ -1,8 +1,8 @@
 import saleForm from "../form/sale-form.js";
 
-function Main() {
-  return `
-    <main class="main">
+const Main = (props) => {
+  return `  
+  <main class="main">
 
     <div class="container container-main">
 
@@ -10,7 +10,7 @@ function Main() {
 
         <h2 class="section-title">Форма расчёта заказа</h2>
 
-        ${saleForm()}
+        ${saleForm(props)}
 
       </section>
       <!-- /#section-materials.section -->
@@ -19,7 +19,8 @@ function Main() {
     <!-- /.container-main -->
 
   </main>
-  <!-- /.main -->`
+  <!-- /.main -->
+  `;
 }
 
 export default Main;

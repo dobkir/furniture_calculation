@@ -1,161 +1,136 @@
-function saleForm() {
-  return `
-  <form class="form sale-form" name="sale-form" action="#" method="POST" target="print_popup"
+
+
+const saleForm = (props) => {
+  const bodyMaterials = { ...props.bodyMaterials };
+  const bodyMainMaterials = { ...bodyMaterials.bodyMainMaterials };
+  const bodyAdditionalMaterials_1 = { ...bodyMaterials.bodyAdditionalMaterials_1 };
+  const facades = { ...props.facades }
+  const mainFacades = { ...facades.mainFacades };
+  const additionalFacades_1 = { ...props.facades.additionalFacades_1 };
+  const optgroup = (optgroupList) => {
+    return Array.isArray(optgroupList) ? optgroupList.map((material) => {
+      return `<option class="form-selector-option" value="materials-body-${material.id}">${material.vendorСode} ${material.name}</option>`
+    }) : null
+  };
+
+  return `<form class="form sale-form" name="sale-form" action="#" method="POST" target="print_popup"
           onsubmit="window.open('about:blank','print_popup','width=1000, height=800');">
-          <fieldset class="fieldset" id="fieldset-materials-body">
-            <legend class="legend">Материал корпуса</legend>
 
-            <label class="label" for="selector-materials-body-0">
+          <fieldset class="fieldset" id="fieldset-${bodyMaterials.selector}">
 
-              <span class="label-title">Основной материал корпуса</span>
+            <legend class="legend">${bodyMaterials.name}</legend>
 
-              <select class="form-selector" id="selector-materials-body-0" name="selector-materials-body-0">
-                <option class="form-selector-option" value="materials-body-default" disabled>Выбрать материал корпуса
+            <label class="label" for="selector-${bodyMaterials.selector}-${bodyMainMaterials.id}">
+
+              <span class="label-title">${bodyMainMaterials.name}</span>
+
+              <select class="form-selector" id="selector-${bodyMaterials.selector}-${bodyMainMaterials.id}" name="selector-${bodyMaterials.selector}-${bodyMainMaterials.id}">
+                <option class="form-selector-option" value="${bodyMaterials.selector}-default" disabled>Выбрать материал корпуса
                 </option>
-                <option class="form-selector-option" value="materials-body-0" selected>Нет корпуса</option>
-                <optgroup label="ЛДСП Egger">
-                  <option class="form-selector-option" value="materials-body-1">ЛДСП Egger 16мм Серый</option>
-                  <option class="form-selector-option" value="materials-body-2">ЛДСП Egger 16мм Белый</option>
-                  <option class="form-selector-option" value="materials-body-3">ЛДСП Egger 16мм Бук Бавария светлый
-                  </option>
-                  <option class="form-selector-option" value="materials-body-4">ЛДСП Egger 16мм Бук Бавария темный
-                  </option>
+                <option class="form-selector-option" value="${bodyMaterials.selector}-${bodyMaterials.noMaterial.id}" selected>${bodyMaterials.noMaterial.name}</option>
+                <optgroup label="${bodyMainMaterials.selector_0.name}">
+                 ${optgroup(bodyMainMaterials.selector_0.list)}
                 </optgroup>
-                <optgroup label="ЛДСП Kronospan">
-                  <option class="form-selector-option" value="materials-body-2">ЛДСП Kronospan 16мм Белый</option>
-                  <option class="form-selector-option" value="materials-body-1">ЛДСП Kronospan 16мм Серый</option>
-                  <option class="form-selector-option" value="materials-body-3">ЛДСП Kronospan 16мм Бук Бавария светлый
-                  </option>
-                  <option class="form-selector-option" value="materials-body-4">ЛДСП Kronospan 16мм Бук Бавария темный
-                  </option>
+                <optgroup label="${bodyMainMaterials.selector_1.name}">
+                 ${optgroup(bodyMainMaterials.selector_1.list)}
                 </optgroup>
-                <optgroup label="МДФ">
-                  <option class="form-selector-option">ЛМДФ 16мм односторонний белый</option>
-                  <option class="form-selector-option">МДФ 16мм</option>
+                <optgroup label="${bodyMainMaterials.selector_2.name}">
+                 ${optgroup(bodyMainMaterials.selector_2.list)}
                 </optgroup>
               </select>
 
             </label>
-            <!-- /#selector-materials-body-0 -->
+            <!-- /#selector-${bodyMaterials.selector}-${bodyMainMaterials.id} -->
 
-            <label class="label" for="selector-materials-body-1">
+            <label class="label" for="selector-${bodyMaterials.selector}-${bodyAdditionalMaterials_1.id}">
 
-              <span class="label-title">Дополнительный материал корпуса</span>
+              <span class="label-title">${bodyAdditionalMaterials_1.name}</span>
 
-              <select class="form-selector" id="selector-materials-body-1" name="selector-materials-body-1">
-                <option class="form-selector-option" value="materials-body-default" disabled>Выбрать материал корпуса
+              <select class="form-selector" id="selector-${bodyMaterials.selector}-${bodyAdditionalMaterials_1.id}" name="selector-${bodyMaterials.selector}-${bodyAdditionalMaterials_1.id}">
+                <option class="form-selector-option" value="${bodyMaterials.selector}-default" disabled>Выбрать материал корпуса
                 </option>
-                <option class="form-selector-option" value="materials-body-0" selected>Нет корпуса</option>
-                <optgroup label="ЛДСП Egger">
-                  <option class="form-selector-option" value="materials-body-1">ЛДСП Egger 16мм Серый</option>
-                  <option class="form-selector-option" value="materials-body-2">ЛДСП Egger 16мм Белый</option>
-                  <option class="form-selector-option" value="materials-body-3">ЛДСП Egger 16мм Бук Бавария светлый
-                  </option>
-                  <option class="form-selector-option" value="materials-body-4">ЛДСП Egger 16мм Бук Бавария темный
-                  </option>
+                <option class="form-selector-option" value="${bodyMaterials.selector}-${bodyMaterials.noMaterial.id}" selected>${bodyMaterials.noMaterial.name}</option>
+                <optgroup label="${bodyAdditionalMaterials_1.selector_0.name}">
+                 ${optgroup(bodyAdditionalMaterials_1.selector_0.list)}
                 </optgroup>
-                <optgroup label="ЛДСП Kronospan">
-                  <option class="form-selector-option" value="materials-body-2">ЛДСП Kronospan 16мм Белый</option>
-                  <option class="form-selector-option" value="materials-body-1">ЛДСП Kronospan 16мм Серый</option>
-                  <option class="form-selector-option" value="materials-body-3">ЛДСП Kronospan 16мм Бук Бавария светлый
-                  </option>
-                  <option class="form-selector-option" value="materials-body-4">ЛДСП Kronospan 16мм Бук Бавария темный
-                  </option>
+                <optgroup label="${bodyAdditionalMaterials_1.selector_1.name}">
+                 ${optgroup(bodyAdditionalMaterials_1.selector_1.list)}
                 </optgroup>
-                <optgroup label="МДФ">
-                  <option class="form-selector-option">ЛМДФ 16мм односторонний белый</option>
-                  <option class="form-selector-option">МДФ 16мм</option>
+                <optgroup label="${bodyAdditionalMaterials_1.selector_2.name}">
+                 ${optgroup(bodyAdditionalMaterials_1.selector_2.list)}
                 </optgroup>
               </select>
 
             </label>
-            <!-- /#selector-materials-body-1 -->
+            <!-- /#selector-${bodyMaterials.selector}-${bodyAdditionalMaterials_1.id} -->
 
-            <button class="button form-button form-button_add-selector-materials-body" type="button"
-              title="Добавить ещё один материал корпуса">Добавить ещё один материал корпуса</button>
+            <button class="button form-button form-button_add-selector-${bodyMaterials.selector}" type="button"
+              title="Добавить ещё ${facades.name.toLowerCase()}">Добавить ещё ${bodyMaterials.name.toLowerCase()}</button>
 
           </fieldset>
-          <!-- /#fieldset-materials-body.fieldset -->
+          <!-- /#fieldset-${facades.selector}.fieldset -->
 
-          <fieldset class="fieldset" id="fieldset-materials-fasad">
-            <legend class="legend">Материал фасада</legend>
+          <fieldset class="fieldset" id="fieldset-${facades.selector}">
 
-            <label class="label" for="selector-materials-fasad-0">
+            <legend class="legend">${facades.name}</legend>
 
-              <span class="label-title">Основной материал фасада</span>
+            <label class="label" for="selector-${facades.selector}-${mainFacades.id}">
 
-              <select class="form-selector" id="selector-materials-fasad-0" name="selector-materials-fasad-0">
-                <option class="form-selector-option" value="materials-fasad-default" disabled>Выбрать материал фасада
+              <span class="label-title">${mainFacades.name}</span>
+
+              <select class="form-selector" id="selector-${facades.selector}-${mainFacades.id}" name="selector-${facades.selector}-${mainFacades.id}">
+                <option class="form-selector-option" value="${facades.selector}-default" disabled>Выбрать материал корпуса
                 </option>
-                <option class="form-selector-option" value="materials-fasad-0" selected>Нет фасада</option>
-                <optgroup label="ЛДСП Egger">
-                  <option class="form-selector-option" value="materials-fasad-1">ЛДСП Egger 16мм Серый</option>
-                  <option class="form-selector-option" value="materials-fasad-2">ЛДСП Egger 16мм Белый</option>
-                  <option class="form-selector-option" value="materials-fasad-3">ЛДСП Egger 16мм Бук Бавария светлый
-                  </option>
-                  <option class="form-selector-option" value="materials-fasad-4">ЛДСП Egger 16мм Бук Бавария темный
-                  </option>
+                <option class="form-selector-option" value="${facades.selector}-${facades.noMaterial.id}" selected>${facades.noMaterial.name}</option>
+                <optgroup label="${mainFacades.selector_0.name}">
+                 ${optgroup(mainFacades.selector_0.list)}
                 </optgroup>
-                <optgroup label="ЛДСП Kronospan">
-                  <option class="form-selector-option" value="materials-fasad-2">ЛДСП Kronospan 16мм Белый</option>
-                  <option class="form-selector-option" value="materials-fasad-1">ЛДСП Kronospan 16мм Серый</option>
-                  <option class="form-selector-option" value="materials-fasad-3">ЛДСП Kronospan 16мм Бук Бавария светлый
-                  </option>
-                  <option class="form-selector-option" value="materials-fasad-4">ЛДСП Kronospan 16мм Бук Бавария темный
-                  </option>
+                <optgroup label="${mainFacades.selector_1.name}">
+                 ${optgroup(mainFacades.selector_1.list)}
                 </optgroup>
-                <optgroup label="МДФ">
-                  <option class="form-selector-option">ЛМДФ 16мм односторонний белый</option>
-                  <option class="form-selector-option">МДФ 16мм</option>
+                <optgroup label="${mainFacades.selector_2.name}">
+                 ${optgroup(mainFacades.selector_2.list)}
                 </optgroup>
               </select>
 
             </label>
-            <!-- /#selector-materials-fasad-0 -->
+            <!-- /#selector-${facades.selector}-${mainFacades.id} -->
 
-            <label class="label" for="selector-materials-fasad-1">
+            <label class="label" for="selector-${facades.selector}-${additionalFacades_1.id}">
 
-              <span class="label-title">Дополнительный материал фасада</span>
+              <span class="label-title">${additionalFacades_1.name}</span>
 
-              <select class="form-selector" id="selector-materials-fasad-1" name="selector-materials-fasad-1">
-                <option class="form-selector-option" value="materials-fasad-default" disabled>Выбрать материал фасада
+              <select class="form-selector" id="selector-${facades.selector}-${additionalFacades_1.id}" name="selector-${facades.selector}-${additionalFacades_1.id}">
+                <option class="form-selector-option" value="${facades.selector}-default" disabled>Выбрать материал корпуса
                 </option>
-                <option class="form-selector-option" value="materials-fasad-0" selected>Нет фасада</option>
-                <optgroup label="ЛДСП Egger">
-                  <option class="form-selector-option" value="materials-fasad-1">ЛДСП Egger 16мм Серый</option>
-                  <option class="form-selector-option" value="materials-fasad-2">ЛДСП Egger 16мм Белый</option>
-                  <option class="form-selector-option" value="materials-fasad-3">ЛДСП Egger 16мм Бук Бавария светлый
-                  </option>
-                  <option class="form-selector-option" value="materials-fasad-4">ЛДСП Egger 16мм Бук Бавария темный
-                  </option>
+                <option class="form-selector-option" value="${facades.selector}-${facades.noMaterial.id}" selected>${facades.noMaterial.name}</option>
+                <optgroup label="${additionalFacades_1.selector_0.name}">
+                 ${optgroup(additionalFacades_1.selector_0.list)}
                 </optgroup>
-                <optgroup label="ЛДСП Kronospan">
-                  <option class="form-selector-option" value="materials-fasad-2">ЛДСП Kronospan 16мм Белый</option>
-                  <option class="form-selector-option" value="materials-fasad-1">ЛДСП Kronospan 16мм Серый</option>
-                  <option class="form-selector-option" value="materials-fasad-3">ЛДСП Kronospan 16мм Бук Бавария светлый
-                  </option>
-                  <option class="form-selector-option" value="materials-fasad-4">ЛДСП Kronospan 16мм Бук Бавария темный
-                  </option>
+                <optgroup label="${additionalFacades_1.selector_1.name}">
+                 ${optgroup(additionalFacades_1.selector_1.list)}
                 </optgroup>
-                <optgroup label="МДФ">
-                  <option class="form-selector-option">ЛМДФ 16мм односторонний белый</option>
-                  <option class="form-selector-option">МДФ 16мм</option>
+                <optgroup label="${additionalFacades_1.selector_2.name}">
+                 ${optgroup(additionalFacades_1.selector_2.list)}
                 </optgroup>
               </select>
 
             </label>
-            <!-- /#selector-materials-fasad-1 -->
+            <!-- /#selector-${facades.selector}-${additionalFacades_1.id} -->
 
-            <button class="button form-button form-button_add-selector-materials-fasad" type="button"
-              title="Добавить ещё один материал фасада">Добавить ещё один материал фасада</button>
+            <button class="button form-button form-button_add-selector-${facades.selector}" type="button"
+              title="Добавить ещё ${facades.name.toLowerCase()}">Добавить ещё ${facades.name.toLowerCase()}</button>
 
           </fieldset>
-          <!-- /#fieldset-materials-fasad.fieldset -->
+          <!-- /#fieldset-${facades.selector}.fieldset -->
+
 
           <button class="button form-button" type="submit" title="Рассчитать общую стоимость заказа">Рассчитать общую
             стоимость</button>
         </form>
         <!-- /.form-nomenclature -->`
+  // return console.log(LDSP_Egger16mm)
+  // return LDSP_Egger16mm;
 }
 
 export default saleForm;

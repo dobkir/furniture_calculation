@@ -1,5 +1,4 @@
-function Header() {
-  return `
+const Header = `
     <header class="header">
       <div class="container container-header">
         <div class="title-paragraph">
@@ -10,6 +9,5 @@ function Header() {
     </header>
     <!-- /.header -->
   `;
-}
 
 export default Header;
